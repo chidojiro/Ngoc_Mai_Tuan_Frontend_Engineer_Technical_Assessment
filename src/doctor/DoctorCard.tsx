@@ -28,9 +28,15 @@ export const DoctorCard = ({ doctor: { id, address, description, name, opening_h
       <div className='flex-1'>
         <p className='font-bold'>{name}</p>
         <div className='mt-1.5 space-y-1'>
-          <p className='mt-1'>Description: {description ? description : 'N/A'}</p>
+          <p className='mt-1'>
+            <span className='font-medium text-gray-800'>Description: </span>
+            {description ? description : 'N/A'}
+          </p>
           <div className='flex gap-1'>
-            <p>Address: {[address.line_1, address.line_2, address.district].filter(Boolean).join(', ')}</p>
+            <p>
+              <span className='font-medium text-gray-800'>Address: </span>
+              {[address.line_1, address.line_2, address.district].filter(Boolean).join(', ')}
+            </p>
           </div>
         </div>
       </div>

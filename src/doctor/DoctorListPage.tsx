@@ -10,7 +10,7 @@ const DoctorListPage = ({}: DoctorListPageProps) => {
   const { doctors } = useDoctors();
 
   return (
-    <MainLayout>
+    <div>
       <MainLayout.Header left='Doctors'></MainLayout.Header>
 
       <div className='space-y-2'>
@@ -18,7 +18,7 @@ const DoctorListPage = ({}: DoctorListPageProps) => {
           <DoctorCard key={doctor.id} doctor={doctor} />
         ))}
       </div>
-    </MainLayout>
+    </div>
   );
 };
 

@@ -1,21 +1,21 @@
 import { DOCTOR_ROUTES } from '@/doctor/routes';
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
+import { MainLayoutOutlet } from './MainLayoutOutlet';
+import { RouteConfig } from './types';
 
-const allRoutes = {
-  ...DOCTOR_ROUTES,
-};
-
-const renderRoutes = () => {
-  return Object.values(allRoutes).map(({ element, path }) => {
+const renderRoutes = (routes: Record<string, RouteConfig>) => {
+  return Object.values(routes).map(({ element, path }) => {
     return <Route key={path} path={path} element={element} />;
   });
 };
+
+const mainLayoutRoutes = { ...DOCTOR_ROUTES };
 
 const Router = () => {
   return (
     <BrowserRouter>
       <Routes>
-        {renderRoutes()}
+        <Route element={<MainLayoutOutlet />}>{renderRoutes(mainLayoutRoutes)}</Route>
         <Route path='*' element={<Navigate to={DOCTOR_ROUTES.DOCTOR_LIST.path} />} />
       </Routes>
     </BrowserRouter>
