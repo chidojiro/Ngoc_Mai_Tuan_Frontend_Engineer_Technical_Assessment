@@ -1,7 +1,6 @@
 import clsx from 'clsx';
 import React from 'react';
 import { Children, ClassName } from '../types';
-import { Icon, IconName } from './Icon';
 
 type Variant = 'outline' | 'solid' | 'ghost' | 'text' | 'plain';
 type ColorScheme = 'brand' | 'light-brand' | 'gray';
@@ -86,8 +85,6 @@ export type ButtonProps = Children &
     size?: Size;
     pill?: boolean;
     square?: boolean;
-    leftIcon?: IconName;
-    rightIcon?: IconName;
     loading?: boolean;
     style?: React.CSSProperties;
     ref?: React.RefObject<HTMLButtonElement>;
@@ -102,8 +99,6 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       children,
       type = 'button',
       disabled,
-      leftIcon,
-      rightIcon,
       loading,
       size = 'md',
       pill,
@@ -134,24 +129,6 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     const borderRadiusClassName = pill ? 'rounded-full' : 'rounded-md';
     const fontWeightClassName = 'font-medium';
 
-    const renderLeftIcon = () => {
-      const iconClassName = clsx('!w-4 !h-4 flex items-center justify-center', size === 'sm' ? 'mr-1' : 'mr-2');
-
-      if (leftIcon) return <Icon name={leftIcon} />;
-
-      return null;
-    };
-
-    const renderRightIcon = () => {
-      const iconClassName = clsx('!w-4 !h-4 flex items-center justify-center', size === 'sm' ? 'ml-1' : 'ml-2');
-
-      const hasNoIcons = !leftIcon && !rightIcon;
-
-      if (rightIcon) return <span className={iconClassName}>{rightIcon}</span>;
-
-      return null;
-    };
-
     return (
       <button
         {...restProps}
@@ -174,9 +151,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
           },
           className
         )}>
-        {renderLeftIcon()}
         {children}
-        {renderRightIcon()}
       </button>
     );
   }

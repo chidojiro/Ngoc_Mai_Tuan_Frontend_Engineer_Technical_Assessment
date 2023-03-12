@@ -1,6 +1,5 @@
 import clsx from 'clsx';
 import React from 'react';
-import { Icon, IconName } from '../Icon';
 import { BaseInput, BaseInputProps } from './BaseInput';
 
 export type InputProps = BaseInputProps & {
@@ -10,35 +9,12 @@ export type InputProps = BaseInputProps & {
   isLoading?: boolean;
   label?: React.ReactNode;
   required?: boolean | null;
-  leftIcon?: IconName;
-  rightIcon?: IconName;
   size?: 'sm' | 'md';
   clearable?: boolean;
 };
 
 export const Input = React.forwardRef(
-  (
-    {
-      className,
-      clearable,
-      leftIcon,
-      rightIcon,
-      error,
-      disabled,
-      size = 'md',
-      required,
-      label,
-      helperText,
-      inputRef,
-      style,
-      onClick,
-      readOnly,
-      isTrigger,
-      isLoading,
-      ...restProps
-    }: InputProps,
-    ref: any
-  ) => {
+  ({ className, error, disabled, label, inputRef, style, onClick, readOnly, ...restProps }: InputProps, ref: any) => {
     const internalInputRef = React.useRef<any>();
     React.useImperativeHandle(ref, () => internalInputRef.current, []);
 
@@ -68,7 +44,6 @@ export const Input = React.forwardRef(
         style={style}>
         {!!label && <label className='mb-[6px] text-sm font-medium'>{label}</label>}
         <div className='border border-gray-300 h-11 w-full rounded-md flex items-center px-[14px]'>
-          {!!leftIcon && <Icon name={leftIcon} className='mr-[10px] text-gray-500'></Icon>}
           <BaseInput
             className='outline-none border-none w-full'
             error={error}
@@ -77,7 +52,6 @@ export const Input = React.forwardRef(
             readOnly={readOnly}
             {...restProps}
           />
-          {!!rightIcon && <div></div>}
         </div>
       </div>
     );
