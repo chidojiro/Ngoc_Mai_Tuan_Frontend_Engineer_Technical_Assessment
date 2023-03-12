@@ -1,3 +1,4 @@
+import dayjs from 'dayjs';
 import { range } from 'lodash-es';
 import { convertFloatHoursToTime } from '../utils';
 import { CalendarCell } from './CalendarCell';
@@ -6,6 +7,8 @@ import { useCalendarContext } from './CalendarProvider';
 export type CalendarBodyProps = {
   //
 };
+
+const DAYS = ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'];
 
 export const CalendarBody = ({}: CalendarBodyProps) => {
   const {
@@ -37,12 +40,16 @@ export const CalendarBody = ({}: CalendarBodyProps) => {
               {timeMark.format('HH:mm')}
             </div>
             {range(7).map(dateOffset => {
+              const timeSlot = timeMark.add(dateOffset, 'day');
+
               return (
                 <CalendarCell
                   key={dateOffset}
                   className='border-r border-gray-300'
-                  timeSlot={timeMark.add(dateOffset, 'day')}
+                  timeSlot={timeSlot}
                   disabled={
+                    timeSlot.isBefore(dayjs()) ||
+                    !!openingHours.find(({ day, isClosed }) => day === DAYS[dateOffset] && isClosed) ||
                     !availableOpeningSlotsByDay[dateOffset].find(
                       slot => slot.format('HH:mm') === convertFloatHoursToTime(minStart + timeOffset)
                     )
