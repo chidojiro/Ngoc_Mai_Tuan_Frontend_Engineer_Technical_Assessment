@@ -8,7 +8,11 @@ export type CalendarBodyProps = {
 };
 
 export const CalendarBody = ({}: CalendarBodyProps) => {
-  const { viewingWeek, availableOpeningSlotsByDay, openingHours } = useCalendarContext();
+  const {
+    viewingWeek,
+    availableOpeningSlotsByDay,
+    doctor: { opening_hours: openingHours, id: doctorId },
+  } = useCalendarContext();
 
   if (!openingHours.length) return null;
 
@@ -26,6 +30,7 @@ export const CalendarBody = ({}: CalendarBodyProps) => {
       </div>
       {range(timeSlotCount).map(timeOffset => {
         const timeMark = viewingWeek.hour(Math.floor(minStart) + timeOffset).minute((minStart % 1) * 60);
+
         return (
           <div key={timeOffset} className='flex h-7 relative border-l border-b border-gray-300'>
             <div className='absolute -left-2 top-0 -translate-x-full -translate-y-1/2 text-xs text-gray-500'>
@@ -36,11 +41,13 @@ export const CalendarBody = ({}: CalendarBodyProps) => {
                 <CalendarCell
                   key={dateOffset}
                   className='border-r border-gray-300'
+                  timeSlot={timeMark.add(dateOffset, 'day')}
                   disabled={
                     !availableOpeningSlotsByDay[dateOffset].find(
                       slot => slot.format('HH:mm') === convertFloatHoursToTime(minStart + timeOffset)
                     )
                   }
+                  doctorId={doctorId}
                 />
               );
             })}

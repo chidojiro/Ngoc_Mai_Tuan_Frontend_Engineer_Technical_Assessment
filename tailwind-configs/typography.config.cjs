@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 module.exports = {
   fontSize: {
     h1: '4.5rem',

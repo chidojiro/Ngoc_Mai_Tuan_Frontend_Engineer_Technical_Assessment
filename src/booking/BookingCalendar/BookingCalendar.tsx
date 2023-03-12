@@ -1,20 +1,19 @@
 import { ClassName } from '@/core/types';
-import { OpeningHour } from '@/doctor/types';
+import { Doctor } from '@/doctor/types';
 import clsx from 'clsx';
-import React from 'react';
 import { CalendarBody } from './CalendarBody';
 import { CalendarHeader } from './CalendarHeader';
 import { CalendarNavigator } from './CalendarNavigator';
 import { CalendarProvider } from './CalendarProvider';
 
 export type BookingCalendarProps = ClassName & {
-  openingHours: OpeningHour[];
+  doctor: Doctor;
 };
 
-export const BookingCalendar = ({ openingHours, className }: BookingCalendarProps) => {
+export const BookingCalendar = ({ doctor, className }: BookingCalendarProps) => {
   return (
     <div className={clsx('w-[1000px]', className)}>
-      <CalendarProvider openingHours={openingHours}>
+      <CalendarProvider doctor={doctor}>
         <div className='ml-[72px]'>
           <CalendarNavigator />
           <div className='flex gap-4 my-4'>

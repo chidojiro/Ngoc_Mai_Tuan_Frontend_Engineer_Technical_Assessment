@@ -17,7 +17,11 @@ export const LeftSidebar = ({}: LeftSidebarProps) => {
       </div>
 
       <div className='mt-8'>
-        <NavigationItem label='Doctors' href={DOCTOR_ROUTES.DOCTOR_LIST.path} />
+        <NavigationItem
+          label='Doctors'
+          href={DOCTOR_ROUTES.DOCTOR_LIST.path}
+          matches={[DOCTOR_ROUTES.DOCTOR_LIST.path, DOCTOR_ROUTES.DOCTOR_DETAILS.path]}
+        />
       </div>
     </div>
   );

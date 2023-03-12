@@ -9,9 +9,8 @@ export type DoctorDetailsPageProps = {
 
 const DoctorDetailsPage = ({}: DoctorDetailsPageProps) => {
   const { doctorId } = useParams() as Record<string, string>;
-  const {
-    doctor: { name, description, address, opening_hours },
-  } = useDoctor(doctorId);
+  const { doctor } = useDoctor(doctorId);
+  const { name, description, address } = doctor;
 
   return (
     <div>
@@ -30,7 +29,7 @@ const DoctorDetailsPage = ({}: DoctorDetailsPageProps) => {
           </div>
         </div>
       </div>
-      <BookingCalendar openingHours={opening_hours} className='mt-10' />
+      <BookingCalendar doctor={doctor} className='mt-10' />
     </div>
   );
 };

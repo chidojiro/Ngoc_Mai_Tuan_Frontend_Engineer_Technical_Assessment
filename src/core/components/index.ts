@@ -1,4 +1,5 @@
-export * from './Button';
-export * from './Input';
 export * from './Avatar';
+export * from './Button';
 export * from './ErrorBoundary';
+export * from './Input';
+export * from './Modal';

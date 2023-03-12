@@ -3,7 +3,7 @@ import { QueryClient, QueryClientProvider } from 'react-query';
 import { ErrorBoundary } from './core/components';
 import Router from './router/Router';
 
-const client = new QueryClient();
+const client = new QueryClient({ defaultOptions: { queries: { refetchOnWindowFocus: false } } });
 
 function App() {
   return (

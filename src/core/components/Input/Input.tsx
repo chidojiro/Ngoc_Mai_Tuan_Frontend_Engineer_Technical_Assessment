@@ -3,14 +3,9 @@ import React from 'react';
 import { BaseInput, BaseInputProps } from './BaseInput';
 
 export type InputProps = BaseInputProps & {
-  helperText?: React.ReactNode;
   inputRef?: React.RefObject<any>;
-  isTrigger?: boolean;
-  isLoading?: boolean;
   label?: React.ReactNode;
-  required?: boolean | null;
-  size?: 'sm' | 'md';
-  clearable?: boolean;
+  error?: boolean;
 };
 
 export const Input = React.forwardRef(
@@ -42,8 +37,12 @@ export const Input = React.forwardRef(
         onClick={onClick}
         ref={internalInputRef}
         style={style}>
-        {!!label && <label className='mb-[6px] text-sm font-medium'>{label}</label>}
-        <div className='border border-gray-300 h-11 w-full rounded-md flex items-center px-[14px]'>
+        {!!label && <label className='block mb-[6px] text-sm font-medium'>{label}</label>}
+        <div
+          className={clsx('border h-11 w-full rounded-md flex items-center px-[14px]', {
+            'border-gray-300 hover:border-gray-400 focus-within:!border-gray-600': !error,
+            'border-red-300 hover:border-red-400 focus-within:!border-red-600': error,
+          })}>
           <BaseInput
             className='outline-none border-none w-full'
             error={error}

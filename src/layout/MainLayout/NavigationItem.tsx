@@ -1,5 +1,6 @@
 import clsx from 'clsx';
-import { Link, matchPath } from 'react-router-dom';
+import { memo } from 'react';
+import { Link, useMatch } from 'react-router-dom';
 
 export type NavigationItemProps = {
   href: string;
@@ -7,8 +8,9 @@ export type NavigationItemProps = {
   matches?: string[];
 };
 
-export const NavigationItem = ({ href, label, matches }: NavigationItemProps) => {
-  const isActive = [...(matches ?? []), href].some(patchMatch => matchPath(location.pathname, patchMatch));
+export const NavigationItem = memo(({ href, label, matches }: NavigationItemProps) => {
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  const isActive = matches?.reduce((acc, cur) => !!useMatch(cur) || acc, false);
 
   return (
     <Link
@@ -21,4 +23,6 @@ export const NavigationItem = ({ href, label, matches }: NavigationItemProps) =>
       <span className={clsx('overflow-hidden transition-all origin-left')}>{label}</span>
     </Link>
   );
-};
+});
+
+NavigationItem.displayName = 'NavigationItem';

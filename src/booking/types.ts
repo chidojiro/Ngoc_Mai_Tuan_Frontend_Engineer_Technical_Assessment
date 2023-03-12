@@ -1,11 +1,1 @@
-import { Dayjs } from 'dayjs';
-
-export type TimeRange = {
-  startTime: string;
-  endTime: string;
-};
-
-export type DateTimeRange = TimeRange & {
-  startDate: string;
-  endDate: string;
-};
+export type CreateBookingPayload = { name: string; doctorId: string; start: number; date: string };

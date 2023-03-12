@@ -1,6 +1,6 @@
 import { Children } from '@/core/types';
 import { createContext, trimTime } from '@/core/utils';
-import { OpeningHour } from '@/doctor/types';
+import { Doctor } from '@/doctor/types';
 import dayjs, { Dayjs } from 'dayjs';
 import React from 'react';
 import { convertFloatHoursToTime, mergeTimeIntoDay, splitTimeRangeIntoTimeSlots } from '../utils';
@@ -9,7 +9,7 @@ export type CalendarProviderValue = {
   today: Dayjs;
   viewingWeek: Dayjs;
   availableOpeningSlotsByDay: Dayjs[][];
-  openingHours: OpeningHour[];
+  doctor: Doctor;
   viewPreviousWeek: () => void;
   viewNextWeek: () => void;
   viewThisWeek: () => void;
@@ -18,10 +18,10 @@ export type CalendarProviderValue = {
 const [Provider, useCalendarContext] = createContext<CalendarProviderValue>();
 
 export type CalendarProviderProps = Children & {
-  openingHours: OpeningHour[];
+  doctor: Doctor;
 };
 
-export const CalendarProvider = ({ children, openingHours }: CalendarProviderProps) => {
+export const CalendarProvider = ({ children, doctor }: CalendarProviderProps) => {
   const today = React.useMemo(() => trimTime(dayjs()), []);
   const [viewingWeek, setViewingWeek] = React.useState(React.useMemo(() => today.day(0), [today]));
 
@@ -39,7 +39,7 @@ export const CalendarProvider = ({ children, openingHours }: CalendarProviderPro
 
   const availableOpeningSlotsByDay = React.useMemo(() => {
     return ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'].map((day, index) => {
-      const openingHour = openingHours.find(openingHour => openingHour.day === day);
+      const openingHour = doctor.opening_hours.find(openingHour => openingHour.day === day);
 
       if (!openingHour || openingHour.isClosed) return [];
 
@@ -48,7 +48,7 @@ export const CalendarProvider = ({ children, openingHours }: CalendarProviderPro
         mergeTimeIntoDay(dayjs(viewingWeek.day(index)), convertFloatHoursToTime(+openingHour.end))
       );
     });
-  }, [openingHours, viewingWeek]);
+  }, [doctor.opening_hours, viewingWeek]);
 
   const value = React.useMemo<CalendarProviderValue>(
     () => ({
@@ -58,9 +58,9 @@ export const CalendarProvider = ({ children, openingHours }: CalendarProviderPro
       viewNextWeek,
       viewPreviousWeek,
       viewThisWeek,
-      openingHours,
+      doctor,
     }),
-    [today, viewingWeek, availableOpeningSlotsByDay, viewNextWeek, viewPreviousWeek, viewThisWeek, openingHours]
+    [today, viewingWeek, availableOpeningSlotsByDay, viewNextWeek, viewPreviousWeek, viewThisWeek, doctor]
   );
 
   return <Provider value={value}>{children}</Provider>;

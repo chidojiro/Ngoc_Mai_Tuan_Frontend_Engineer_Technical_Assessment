@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
+/* eslint-disable no-undef */
 /** @type {import('tailwindcss').Config} */
 const colors = require('./tailwind-configs/colors.config.cjs');
 const typography = require('./tailwind-configs/typography.config.cjs');
