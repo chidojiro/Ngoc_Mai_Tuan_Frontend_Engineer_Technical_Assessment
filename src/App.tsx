@@ -8,11 +8,9 @@ const client = new QueryClient({ defaultOptions: { queries: { refetchOnWindowFoc
 function App() {
   return (
     <ErrorBoundary>
-      <Suspense fallback=''>
-        <QueryClientProvider client={client}>
-          <Router />
-        </QueryClientProvider>
-      </Suspense>
+      <QueryClientProvider client={client}>
+        <Router />
+      </QueryClientProvider>
     </ErrorBoundary>
   );
 }
