@@ -1,0 +1,73 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  *,
+  ::before,
+  ::after {
+    box-sizing: inherit;
+    color: inherit;
+    font-weight: inherit;
+    font-family: inherit;
+  }
+
+  html {
+    @apply box-border text-gray-900;
+    /* font-family: "Inter" !important; */
+  }
+
+  body {
+    @apply text-sm
+  }
+}
+
+@layer utilities {
+  .minimized {
+    @apply h-0 w-0 border-none outline-none m-0 p-0 absolute opacity-0 !important;
+  }
+
+  .text-xs {
+    @apply leading-xs;
+  }
+
+  .text-sm {
+    @apply leading-sm;
+  }
+
+  .text-md {
+    @apply leading-md;
+  }
+
+  .text-lg {
+    @apply leading-lg;
+  }
+
+  .text-xl {
+    @apply leading-xl;
+  }
+
+  .text-h6 {
+    @apply leading-h6;
+  }
+
+  .text-h5 {
+    @apply leading-h5;
+  }
+
+  .text-h4 {
+    @apply leading-h4;
+  }
+
+  .text-h3 {
+    @apply leading-h3;
+  }
+
+  .text-h2 {
+    @apply leading-h2;
+  }
+
+  .text-h1 {
+    @apply leading-h1;
+  }
+}
