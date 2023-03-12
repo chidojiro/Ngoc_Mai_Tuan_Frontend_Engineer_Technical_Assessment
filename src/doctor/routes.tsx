@@ -1,6 +1,8 @@
 import { RouteConfig } from '@/router/types';
-import DoctorDetailsPage from './DoctorDetailsPage';
-import DoctorListPage from './DoctorListPage';
+import { lazy } from 'react';
+
+const DoctorListPage = lazy(() => import('./DoctorListPage'));
+const DoctorDetailsPage = lazy(() => import('./DoctorDetailsPage'));
 
 export const DOCTOR_ROUTES: Record<'DOCTOR_LIST' | 'DOCTOR_DETAILS', RouteConfig> = {
   DOCTOR_LIST: { path: '/doctors', element: <DoctorListPage /> },
