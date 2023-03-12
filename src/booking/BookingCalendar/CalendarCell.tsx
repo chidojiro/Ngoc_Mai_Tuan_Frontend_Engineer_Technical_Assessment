@@ -5,6 +5,7 @@ import clsx from 'clsx';
 import { Dayjs } from 'dayjs';
 import { memo } from 'react';
 import { useMutation } from 'react-query';
+import { useNavigate } from 'react-router-dom';
 import { BookingApis } from '../apis';
 import { convertTimeToFloatHours } from '../utils';
 import { BookingModal } from './BookingModal';
@@ -18,15 +19,18 @@ export type CalendarCellProps = ClassName &
 
 export const CalendarCell = memo(({ className, disabled, timeSlot, doctorId, ...restProps }: CalendarCellProps) => {
   const modalDisclosure = useDisclosure();
+  const navigate = useNavigate();
 
-  const { mutate: createBooking } = useMutation((name: string) => {
-    return BookingApis.create({
+  const handleConfirm = async (name: string) => {
+    const booking = await BookingApis.create({
       date: timeSlot!.format('YYYY-MM-DD'),
       start: convertTimeToFloatHours(timeSlot!.format('HH:mm')),
       name,
       doctorId: doctorId!,
     });
-  });
+
+    return navigate(`/booking/${booking.id}`);
+  };
 
   return (
     <>
@@ -41,7 +45,7 @@ export const CalendarCell = memo(({ className, disabled, timeSlot, doctorId, ...
           timeSlot={timeSlot}
           open={modalDisclosure.isOpen}
           onClose={modalDisclosure.close}
-          onConfirm={createBooking}
+          onConfirm={handleConfirm}
         />
       )}
     </>

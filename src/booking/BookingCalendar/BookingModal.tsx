@@ -21,6 +21,7 @@ export const BookingModal = ({ onConfirm, onClose, timeSlot, open, ...restProps 
   const handleConfirm = () => {
     if (!name) {
       errorDisclosure.open();
+      return;
     }
 
     errorDisclosure.close();
@@ -54,6 +55,7 @@ export const BookingModal = ({ onConfirm, onClose, timeSlot, open, ...restProps 
         className='mt-4'
         label='Full name'
         placeholder='Enter your full name'
+        maxLength={255}
       />
       <div className='flex items-center justify-end gap-2 mt-4'>
         <Button size='sm' variant='outline' colorScheme='gray' onClick={onClose}>

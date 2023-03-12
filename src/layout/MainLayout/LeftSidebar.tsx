@@ -1,3 +1,4 @@
+import { BOOKING_ROUTES } from '@/booking/routes';
 import { DOCTOR_ROUTES } from '@/doctor/routes';
 import clsx from 'clsx';
 import { NavigationItem } from './NavigationItem';
@@ -20,7 +21,11 @@ export const LeftSidebar = ({}: LeftSidebarProps) => {
         <NavigationItem
           label='Doctors'
           href={DOCTOR_ROUTES.DOCTOR_LIST.path}
-          matches={[DOCTOR_ROUTES.DOCTOR_LIST.path, DOCTOR_ROUTES.DOCTOR_DETAILS.path]}
+          matches={[
+            DOCTOR_ROUTES.DOCTOR_LIST.path,
+            DOCTOR_ROUTES.DOCTOR_DETAILS.path,
+            BOOKING_ROUTES.BOOKING_DETAILS.path,
+          ]}
         />
       </div>
     </div>

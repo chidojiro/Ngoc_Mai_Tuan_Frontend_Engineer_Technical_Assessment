@@ -1,6 +1,7 @@
 import { RestApis } from '@/rest/apis';
-import { CreateBookingPayload } from './types';
+import { Booking, CreateBookingPayload } from './types';
 
 export const BookingApis = {
-  create: (payload: CreateBookingPayload) => RestApis.post('booking', payload),
+  get: (id: string) => RestApis.get<Booking>(`booking/${id}`),
+  create: (payload: CreateBookingPayload) => RestApis.post<Booking>('booking', payload),
 };

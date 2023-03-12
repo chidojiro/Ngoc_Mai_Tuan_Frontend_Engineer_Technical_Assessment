@@ -1,3 +1,4 @@
+import { BOOKING_ROUTES } from '@/booking/routes';
 import { DOCTOR_ROUTES } from '@/doctor/routes';
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import { MainLayoutOutlet } from './MainLayoutOutlet';
@@ -9,7 +10,7 @@ const renderRoutes = (routes: Record<string, RouteConfig>) => {
   });
 };
 
-const mainLayoutRoutes = { ...DOCTOR_ROUTES };
+const mainLayoutRoutes = { ...DOCTOR_ROUTES, ...BOOKING_ROUTES };
 
 const Router = () => {
   return (

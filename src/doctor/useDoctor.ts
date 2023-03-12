@@ -7,7 +7,7 @@ import { Doctor } from './types';
 export const useDoctor = (id: string) => {
   return renameQueryReturnProperties<Doctor, 'Doctor'>(
     'Doctor',
-    useQuery(id && ['doctor', id], () => DoctorApis.get(id)),
+    useQuery(['doctor', id], () => DoctorApis.get(id), { enabled: !!id }),
     { emptyFallback: emptyDoctorFallback }
   );
 };
