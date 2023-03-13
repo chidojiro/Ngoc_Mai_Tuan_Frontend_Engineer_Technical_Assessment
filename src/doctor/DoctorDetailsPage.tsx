@@ -1,4 +1,4 @@
-import { BookingCalendar } from '@/booking/BookingCalendar/BookingCalendar';
+import { BookingCalendar } from '@/booking/BookingCalendar';
 import { WithSpinner } from '@/core/components';
 import { MainLayout } from '@/layout/MainLayout';
 import { useParams } from 'react-router-dom';
