@@ -49,6 +49,7 @@ Used in combination with tailwindcss to make classNames more manageable and cust
 ## Production consideration
 
 - Remove hardcoded api key, instead, take it from environment variable
+- Remove hardcoded api endpoint, instead, take it from environment variable
 - Add github workflow to check build and test
 
 ## Assumptions
