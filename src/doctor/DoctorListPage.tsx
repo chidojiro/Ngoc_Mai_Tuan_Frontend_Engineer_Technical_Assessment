@@ -1,4 +1,3 @@
-import { useBooking } from '@/booking/useBooking';
 import { WithSpinner } from '@/core/components';
 import { MainLayout } from '@/layout/MainLayout';
 import { DoctorCard } from './DoctorCard';
@@ -10,8 +9,6 @@ export type DoctorListPageProps = {
 
 const DoctorListPage = ({}: DoctorListPageProps) => {
   const { doctors, isLoadingDoctors } = useDoctors();
-
-  useBooking('9a61cd37-74ab-447f-9380-a9ddcfb2be2b');
 
   return (
     <div>

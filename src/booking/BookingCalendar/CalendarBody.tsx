@@ -1,5 +1,4 @@
 import dayjs from 'dayjs';
-import { range } from 'lodash-es';
 import { convertFloatHoursToTime } from '../utils';
 import { CalendarCell } from './CalendarCell';
 import { useCalendarContext } from './CalendarProvider';
@@ -9,6 +8,14 @@ export type CalendarBodyProps = {
 };
 
 const DAYS = ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'];
+
+const range = (length: number) => {
+  const result = new Array(length);
+  for (let i = 0; i < length; i++) {
+    result[i] = 0 + i;
+  }
+  return result;
+};
 
 export const CalendarBody = ({}: CalendarBodyProps) => {
   const { viewingWeek, availableOpeningSlotsByDay, doctor } = useCalendarContext();
