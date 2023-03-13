@@ -1,6 +1,6 @@
 [[redirects]]
-  from = "/api"
-  to = "https://bowtie-fe-assignment-api.onrender.com"
+  from = "/api/*"
+  to = "https://bowtie-fe-assignment-api.onrender.com/:splat"
   status = 200
   force = true
 
