@@ -13,31 +13,33 @@ yarn dev
 
 ### axios
 
-axios is my preferable choice when it comes to handle rest apis due to its simple syntax and configuration.
+- axios is my preferable choice when it comes to handle rest apis due to its simple syntax and configuration.
 
 ### react-query
 
-Used to handle apis.
-We can also use something like redux-toolkit (rtk query), but this app is simple enough not to apply redux.
+- Used to handle apis.
+- We can also use something like redux-toolkit (rtk query), but this app is simple enough not to apply redux.
 
 ### react-icons
 
-Normally icons will be exported from figma as svg.
-Since we don't have a particular figma for the app, I use this library for various icons. For example chevron, close, ...
+- Normally icons will be exported from figma as svg.
+- Since we don't have a particular figma for the app, I use this library for various icons. For example chevron, close, ...
 
 ### dayjs
 
-A simple counterpart of momentjs.
-Used to display and manipulate date and time, especially for the booking calendar.
+- A simple counterpart of momentjs.
+- Used to display and manipulate date and time, especially for the booking calendar.
+- Although it's not treeshaking-friendly, it's chosen for being close to momentjs, which is very popular
 
 ### tailwindcss
 
-Tailwindcss is a top choice when it comes to styling to quickly build an app from scratch.
-Assuming we are not building UI libraries, it's an suitable CSS library for this app.
+- Tailwindcss is a top choice when it comes to styling to quickly build an app from scratch.
+- Assuming we are not building UI libraries, it's an suitable CSS library for this app.
+- The only downside I see from this library is lengthy classNames, which can be solved with some rules.
 
 ### clsx
 
-Used in combination with tailwindcss to make classNames more manageable and customizable.
+- Used in combination with tailwindcss to make classNames more manageable and customizable.
 
 ## Potential Improvement
 
