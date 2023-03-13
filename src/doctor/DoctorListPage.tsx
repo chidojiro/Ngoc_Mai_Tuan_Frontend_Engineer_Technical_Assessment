@@ -16,9 +16,7 @@ const DoctorListPage = ({}: DoctorListPageProps) => {
 
       <WithSpinner loading={isLoadingDoctors}>
         <div className='space-y-2'>
-          {doctors.map(doctor => (
-            <DoctorCard key={doctor.id} doctor={doctor} />
-          ))}
+          {doctors.length ? doctors.map(doctor => <DoctorCard key={doctor.id} doctor={doctor} />) : 'No doctors found'}
         </div>
       </WithSpinner>
     </div>
