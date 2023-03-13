@@ -55,7 +55,7 @@ export const Modal = ({
             className={clsx(
               'absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2',
               'inline-block bg-white rounded text-left shadow-xl transform transition-all',
-              'p-5 min-w-[400px] min-h-[200px]',
+              'p-5 w-[550px] min-h-[200px]',
               'max-h-[95vh] lg:max-h-[75vh] overflow-auto',
               className
             )}>

@@ -28,9 +28,13 @@ export const DoctorCard = ({ doctor: { id, address, description, name, opening_h
       <div className='flex-1'>
         <p className='font-bold'>{name}</p>
         <div className='mt-1.5 space-y-1'>
-          <p className='mt-1'>
+          <p>
+            <span className='font-medium text-gray-800'>Id: </span>
+            {id || 'N/A'}
+          </p>
+          <p>
             <span className='font-medium text-gray-800'>Description: </span>
-            {description ? description : 'N/A'}
+            {description || 'N/A'}
           </p>
           <div className='flex gap-1'>
             <p>

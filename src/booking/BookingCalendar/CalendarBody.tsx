@@ -11,11 +11,9 @@ export type CalendarBodyProps = {
 const DAYS = ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'];
 
 export const CalendarBody = ({}: CalendarBodyProps) => {
-  const {
-    viewingWeek,
-    availableOpeningSlotsByDay,
-    doctor: { opening_hours: openingHours, id: doctorId },
-  } = useCalendarContext();
+  const { viewingWeek, availableOpeningSlotsByDay, doctor } = useCalendarContext();
+
+  const { opening_hours: openingHours } = doctor;
 
   if (!openingHours.length) return null;
 
@@ -54,7 +52,7 @@ export const CalendarBody = ({}: CalendarBodyProps) => {
                       slot => slot.format('HH:mm') === convertFloatHoursToTime(minStart + timeOffset)
                     )
                   }
-                  doctorId={doctorId}
+                  doctor={doctor}
                 />
               );
             })}

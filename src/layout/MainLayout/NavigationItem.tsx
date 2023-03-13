@@ -10,7 +10,7 @@ export type NavigationItemProps = {
 
 export const NavigationItem = memo(({ href, label, matches }: NavigationItemProps) => {
   // eslint-disable-next-line react-hooks/rules-of-hooks
-  const isActive = matches?.reduce((acc, cur) => !!useMatch(cur) || acc, false);
+  const isActive = [...(matches ?? []), href].reduce((acc, cur) => !!useMatch(cur) || acc, false);
 
   return (
     <Link

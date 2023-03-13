@@ -1,10 +1,10 @@
 import { Button } from '@/core/components';
 import { useDisclosure } from '@/core/hooks';
 import { Children, ClassName } from '@/core/types';
+import { Doctor } from '@/doctor/types';
 import clsx from 'clsx';
 import { Dayjs } from 'dayjs';
 import { memo } from 'react';
-import { useMutation } from 'react-query';
 import { useNavigate } from 'react-router-dom';
 import { BookingApis } from '../apis';
 import { convertTimeToFloatHours } from '../utils';
@@ -14,10 +14,10 @@ export type CalendarCellProps = ClassName &
   Children & {
     disabled?: boolean;
     timeSlot?: Dayjs;
-    doctorId?: string;
+    doctor?: Doctor;
   };
 
-export const CalendarCell = memo(({ className, disabled, timeSlot, doctorId, ...restProps }: CalendarCellProps) => {
+export const CalendarCell = memo(({ className, disabled, timeSlot, doctor, ...restProps }: CalendarCellProps) => {
   const modalDisclosure = useDisclosure();
   const navigate = useNavigate();
 
@@ -26,7 +26,7 @@ export const CalendarCell = memo(({ className, disabled, timeSlot, doctorId, ...
       date: timeSlot!.format('YYYY-MM-DD'),
       start: convertTimeToFloatHours(timeSlot!.format('HH:mm')),
       name,
-      doctorId: doctorId!,
+      doctorId: doctor!.id,
     });
 
     return navigate(`/booking/${booking.id}`);
@@ -40,12 +40,13 @@ export const CalendarCell = memo(({ className, disabled, timeSlot, doctorId, ...
         disabled={disabled}
         {...restProps}
         onClick={modalDisclosure.toggle}></Button>
-      {!!timeSlot && (
+      {!!timeSlot && doctor && (
         <BookingModal
           timeSlot={timeSlot}
           open={modalDisclosure.isOpen}
           onClose={modalDisclosure.close}
           onConfirm={handleConfirm}
+          doctor={doctor}
         />
       )}
     </>
